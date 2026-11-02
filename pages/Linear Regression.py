@@ -30,14 +30,15 @@ def train_model(X, Y):
 model = train_model(X_train, Y_train)
 
 # 3. Sidebar Inputs for Prediction
-st.sidebar.header("Input Features for Prediction")
-x1_input = st.sidebar.slider("Select Feature X1:", 0.0, 10.0, 2.0, step=0.1)
-x2_input = st.sidebar.slider("Select Feature X2:", 0.0, 10.0, 5.0, step=0.1)
+
 
 # 4. Predict using the Trained Model
-col1, col2,col3 = st.columns([1,2,2])
+col1, col2= st.columns([2,2])
 
 with col1:
+    st.header("Input Features for Prediction")
+    x1_input = st.slider("Select Feature X1:", 0.0, 10.0, 2.0, step=0.1)
+    x2_input = st.slider("Select Feature X2:", 0.0, 10.0, 5.0, step=0.1)
     st.subheader("Model Prediction")
     
     # Format inputs into a 2D array: shape (1, 2)
@@ -55,13 +56,16 @@ with col1:
     st.write(f"**Weight for $X_2$ ($\ theta_2$):** {model.coef_[0][1]:.2f}")
 
 with col2:
-    st.subheader("Explanation")
+
     df = pd.DataFrame({
         'Feature X1': X_train[:, 0],
         'Feature X2': X_train[:, 1],
         'Target Y': Y_train.flatten()
 
     })
+
+explanation,code,data = st.tabs(["Explanation","Code","Data"])
+with explanation:
     st.markdown("""## 1. Main Idea and Approach
 
 Imagine you are blindfolded on a bumpy hillside and want to walk down to the lowest valley. Since you can't see, you feel the ground with your feet, figure out which way slopes downward, and take a small step in that direction. You repeat this over and over until you reach the bottom.
@@ -93,7 +97,7 @@ Here is what each part of the code does in simple terms:
 * **`dcost = ...`**: It measures how far off its prediction is from the real answers.
 * **`theta = ...`**: It updates its guesses by taking a small step in the right direction to reduce future mistakes.
 """,unsafe_allow_html=True)
-with col3:
+with code:
     st.title("Code From Scratch")
 
     python_code = """
@@ -119,7 +123,5 @@ with col3:
     #programmed by D20
     """
     st.code(python_code, language="python")
-
-   
-   
-st.dataframe(df.head(10))
+with data:
+    st.dataframe(df.head(10))
