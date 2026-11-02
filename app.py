@@ -10,3 +10,13 @@ st.write("This application mainly focus on writing and understanding ML models f
 # st.write("Creator: D20")
 
 # st.metric(label="Model Accuracy", value="92%", delta="+3% from last build")
+
+# Provide:
+
+# 1.A complete approach(more focus) of the code with main idea and logic
+
+# 2.Brief Explanation of the code
+
+# 3.Think the reader is complete layman
+
+# 4. Keep it clean , concise,simple English and markdown

@@ -62,7 +62,37 @@ with col2:
         'Target Y': Y_train.flatten()
 
     })
-    st.write("Uploading the explanation of code ASAP in simple Lang" )
+    st.markdown("""## 1. Main Idea and Approach
+
+Imagine you are blindfolded on a bumpy hillside and want to walk down to the lowest valley. Since you can't see, you feel the ground with your feet, figure out which way slopes downward, and take a small step in that direction. You repeat this over and over until you reach the bottom.
+
+This Python code uses the exact same idea—called **Gradient Descent**—to teach a computer how to discover a hidden rule behind some data.
+
+* **The Goal:** Find the best straight-line equation ($Y = aX + b$) that fits a set of data points.
+* **The Logic:** The computer starts with a completely random guess. It checks how wrong its guess is, calculates how to fix it, and adjusts its guess step-by-step until it gets as close to the correct answer as possible.
+
+---
+
+## 2. Brief Explanation of the Code
+
+Here is what each part of the code does in simple terms:
+
+### Generating the Data
+
+* **`X = np.random.rand(100, 1)`**: Creates 100 random numbers (think of these as input values, like hours spent studying).
+* **`Y = 4 + 3 * X`**: Generates corresponding output values (like exam scores) using a secret rule: multiply the input by 3 and add 4.
+* **`X_b = ...`**: Prepares the data so the computer can handle the starting point (the "+ 4" part of the equation).
+
+### Training the Model (`gradientdes` function)
+
+* **`theta = np.random.randn(2, 1)`**: The computer starts with two completely random guesses for our secret rule.
+* **`learning_rate = 0.1`**: Controls the size of the steps the computer takes when adjusting its guesses. If the step is too big, it overshoots; if it's too small, it takes forever.
+* **`iterations = 150`**: The computer repeats the learning process 150 times to fine-tune its guesses.
+* **Inside the loop:**
+* **`y_pred = ...`**: The computer makes a prediction using its current guesses.
+* **`dcost = ...`**: It measures how far off its prediction is from the real answers.
+* **`theta = ...`**: It updates its guesses by taking a small step in the right direction to reduce future mistakes.
+""",unsafe_allow_html=True)
 with col3:
     st.title("Code From Scratch")
 
